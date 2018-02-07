@@ -1,0 +1,14 @@
+<ion-content padding class="transparent-header" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
+  <ion-header>
+    <ion-navbar>
+    </ion-navbar>
+  </ion-header>
+  <div padding>
+    <div style="padding: 50% 10px 10px 10px">
+      <ion-item>
+        <ion-label floating>{{ 'login.serverIP' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="serverIP" clearInput="true"></ion-input>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

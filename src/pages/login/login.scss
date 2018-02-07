@@ -1,0 +1,77 @@
+page-login {
+    $base-color:  white;
+    ion-content {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-color: transparent;
+      }
+      .logo {
+        width: 50%;
+        height: auto;
+        margin: 0 auto;
+        padding-bottom: 50px;
+        padding-top: 20%;
+      }
+      .no-border {
+        border-bottom: 0 !important;
+        box-shadow: none !important;
+      }
+      ion-row {
+        align-items: center;
+        text-align: center;
+      }
+      ion-col {
+        padding: 0 20px;
+      }
+      span,
+      p {
+        color: #4A4747;
+        float:  right;
+        background-color:transparent;
+      }
+      
+      // Input items
+      ion-label,
+      .input-has-focus {
+        color: #393737 !important;
+      }
+      ion-list {
+        margin: 0;
+      } 
+      ion-item {
+        border-radius: 3px !important;
+        padding-right: 16px !important;
+        margin-bottom: 5px !important;
+        color: #433F3F !important;
+        background-color: transparent !important;
+        font-size: 0.9em;
+      }
+
+      .login-button {
+        width: 100%;
+        height: 50px;
+        font-size: 1.4em;
+        span {
+            color: $base-color !important;
+          }
+      }  
+      .serverSetting-button {
+        float: right;
+        font-size: 0.9em;
+        ion-icon {
+          padding-left: 10px;
+          font-size: 2.2rem;
+        }
+      }
+      .rememeberme-checkbox{
+        background-color:transparent;
+        color: #666666;
+        font-size: 0.9em;
+      }    
+
+    //   .checkbox .checkbox-checked {
+    //     border-color: #666666;
+    //     background-color: #666666;
+    // }
+}

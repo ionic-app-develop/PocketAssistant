@@ -1,0 +1,65 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.header {
+  text-align: center;
+}
+
+.toolbar-background {
+  //background-color: #387ef5 !important;
+  //color: white;
+  border-color: transparent;
+}
+
+//.tabbar {
+//  background: #66CCFF !important;
+//  border-color: transparent;
+//}
+
+//.tab-button {
+//  color: #66CCFF !important
+//}
+//
+//.tab-button-icon {
+//  color: #66CCFF !important
+//}
+
+ion-icon {  
+  &[class*="appname-"] {  
+      // Instead of using the font-based icons  
+      // We're applying SVG masks  
+      -webkit-mask-size:  contain;  
+      -webkit-mask-repeat: no-repeat;  
+      // mask-position: 50% 50%;          
+      background: currentColor;  
+      width: 1em;  
+      height: 1em;  
+  }  
+  // custom icons  
+  &[class*="appname-bendian"] {  
+      -webkit-mask-image: url(../assets/svg/ryz-bendian.svg);  
+  }  
+  &[class*="appname-shouye"] {  
+      -webkit-mask-image: url(../assets/svg/ryz-shouye.svg);  
+  }  
+  &[class*="appname-shuju"] {  
+      -webkit-mask-image: url(../assets/svg/ryz-shuju.svg);  
+  }  
+  &[class*="appname-wode"] {  
+      -webkit-mask-image: url(../assets/svg/ryz-wode.svg);  
+  }  
+}  

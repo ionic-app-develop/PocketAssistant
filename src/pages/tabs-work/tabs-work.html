@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'work.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="{{ 'todo.list.refresherPullingText' | translate }}" refreshingSpinner="circles"
+      refreshingText="{{ 'todo.list.refreshingText' | translate }}">
+    </ion-refresher-content>
+  </ion-refresher>
+</ion-content>

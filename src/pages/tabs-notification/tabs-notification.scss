@@ -1,0 +1,19 @@
+page-tabs-notification {
+    .cardHeader {
+        background-color: #F2F2F2;
+        height: 40px;
+      }
+    .card-header {
+        font-size: 1.6rem;
+        color: #222;
+        padding: 7px;
+    }
+    .card-md {
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.04);
+    }
+    .list ion-item-sliding {
+        border-bottom-style: solid;
+        border-bottom-color: #E2DCDC;
+        border-bottom-width: 1px;
+    }
+}

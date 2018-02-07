@@ -1,0 +1,36 @@
+<ion-content padding class="transparent-header" [ngStyle]="{'background-image': 'url(' + backgroundImage +')'}">
+  <div class="logo">
+    <img src="assets/img/Vertiv_logo.png" alt="Ionic logo">
+  </div>
+
+  <form #loginForm="ngForm" novalidate>
+    <ion-list inset class="no-border">
+      <ion-item>
+        <ion-label> {{ 'login.username' | translate }}</ion-label>
+        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+        {{ 'login.userNameValid' | translate }}
+      </p>
+
+      <ion-item>
+        <ion-label> {{ 'login.password' | translate }}</ion-label>
+        <ion-input [(ngModel)]="login.password" #input name="password" type="password" #password="ngModel" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+        {{ 'login.passwordValid' | translate }}
+      </p>
+    </ion-list>
+
+    <ion-item no-lines class="rememeberme-checkbox">
+      <ion-label> {{ 'login.rememberMe' | translate }} </ion-label>
+      <ion-checkbox [(ngModel)]="rememberMe" name="RememberMe"></ion-checkbox>
+    </ion-item>
+    <button ion-button class="login-button" color="dark" (click)="onLogin(loginForm)" type="submit"> {{ 'login.title' | translate }} </button>
+    <button ion-button clear (click)="goToServerIPSetting()" color="light" class="serverSetting-button"> {{ 'login.serverSetting' | translate }} </button>
+  </form>
+</ion-content>

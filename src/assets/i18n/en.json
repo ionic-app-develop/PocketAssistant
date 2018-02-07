@@ -1,0 +1,56 @@
+{
+  "language": {
+    "selectLanguage": "Select Language",
+    "chinese": "Chinese",
+    "english": "English"
+  },
+  "common": {
+    "general": "General",
+    "noData": "No Data.",
+    "tip": "Tip",
+    "commit": "Commit",
+    "commitSuccess": "Commit Success.",
+    "upload": "Upload",
+    "download": "Download",
+    "comments": "Comments",
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "error": "Error",
+    "delete": "Delete",
+    "back": "Back",
+    "startTime": "StartTime",
+    "endTime": "EndTime",
+    "query": "Query",
+    "clearQuery": "Reset"
+  },
+  "home": {
+    "todoTask": "Todo",
+    "doneTask": "Done",
+    "mine": "Mine"
+  },
+  "login": {
+    "title": "Login",
+    "username": "UserName",
+    "password": "Password",
+    "rememberMe": "RememberMe",
+    "loginError": "LoginError. Please check and retry.",
+    "passwordError":"Username and password error.",
+    "serverSetting": "Server Setting",
+    "userNameValid": "Username no nulls allowed",
+    "passwordValid": "Password no nulls allowed",
+    "serverIP": "Server IP"
+  },
+  "notification": {"title": "Notification"},
+  "work": {"title": "Work"},
+  "mine": {
+    "title": "my",
+    "qrCode": "QrCode Download",
+    "setting": "Setting",
+    "exitPlatform": "Exit Platform",
+    "relogin": "Log Out",
+    "about": "About",
+    "confirmExit": "Confirm to Exit?",
+    "scanDownload": "Qr code on scan, free download."
+  },
+  "onceAgainExit ": "Once again, exit the application."
+}

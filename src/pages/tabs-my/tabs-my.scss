@@ -1,0 +1,36 @@
+page-tabs-my {
+  .userInfo {
+    width: 50%;
+    padding: 4%;
+    margin: 8px 0;
+    overflow: hidden;
+    background: transparent;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 999999px;
+      float: center;
+    }
+    .userInfo_name {
+      float: left;
+      margin-left: 10px;
+    }
+    h5 {
+      margin: 0 !important;
+      line-height: 25px;
+      color: rgb(255, 105, 0);
+    }
+  }
+  ion-content {
+    background-color: #f2f4f7 !important;
+  }
+  ion-list {
+    box-shadow: 0 0 4px #c4c6c8;
+  }
+  ion-avatar{
+    background-color:transparent;
+  }
+  .item {
+    color: #797979 !important;
+  }
+}

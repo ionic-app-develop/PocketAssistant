@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>{{ 'mine.qrCode' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="wrap">
+    <div class="ele margin">
+      <qr-code [value]="apkDownloadURL" [size]="150"></qr-code>
+    </div>
+    <div class="ele text">
+      <p>{{ 'mine.scanDownload' | translate }}</p>
+    </div>
+  </div>
+
+</ion-content>

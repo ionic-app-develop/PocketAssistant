@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'mine.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <section class="userInfo">
+        <ion-avatar item-start>
+          <!-- <img [src]="profilePic" /> -->
+        </ion-avatar>
+      </section>
+    </ion-col>
+    <ion-col col-8>
+      <section class="userInfo_name">
+        <h5>{{username}}</h5>
+      </section>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <button ion-item (click)="setting()">
+        <ion-icon name="settings" item-left color="primary"></ion-icon>
+        {{ 'mine.setting' | translate }}
+      </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="exitSoftware()" hideWhen="ios" detail-none>
+        <ion-icon name="log-out" item-left></ion-icon>
+        {{ 'mine.exitPlatform' | translate }}
+      </button>
+    <button ion-item (click)="loginOut()" detail-none>
+        <ion-icon name="log-in" item-left></ion-icon>
+        {{ 'mine.relogin' | translate }}
+      </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="about()">
+        <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
+        {{ 'mine.about' | translate }}
+      </button>
+  </ion-list>
+</ion-content>

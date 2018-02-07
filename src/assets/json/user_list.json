@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "message": "ok",
+  "content": [
+    {
+      "userId": 1001,
+      "userName": "张飞",
+      "gender": "男",
+      "age": "18",
+      "email": "1029278778@qq.com",
+      "tel": "13594712722"
+    },
+    {
+      "userId": 1002,
+      "userName": "赵云",
+      "gender": "男",
+      "age": "19",
+      "email": "1029278778@qq.com",
+      "tel": "13594712722"
+    },
+    {
+      "userId": 1003,
+      "userName": "刘备",
+      "gender": "男",
+      "age": "21",
+      "email": "1029278778@qq.com",
+      "tel": "13594712722"
+    }
+  ]
+}
