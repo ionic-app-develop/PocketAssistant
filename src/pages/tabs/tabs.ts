@@ -1,8 +1,9 @@
-import {Component } from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, Tabs} from 'ionic-angular';
 import {TranslateService} from '@ngx-translate/core';
 import {AppTranslationService} from "../../app/app.translation.service";
 import { Storage } from '@ionic/storage';
+import { PublicVar} from "../../providers/constant";
 
 // @IonicPage({name: 'tabs'})
 @Component({
@@ -13,7 +14,8 @@ export class TabsPage {
   public notificationRoot: any = 'notification';
   public workRoot: any = 'work';
   public myRoot: any = 'my';
-  public num;
+  @ViewChild('myTabs') tabRef: Tabs;
+  public unreadNum;
 
   private timer;
 
@@ -21,42 +23,44 @@ export class TabsPage {
               public translate: TranslateService,
               public appTranslationService: AppTranslationService,
               public storage: Storage) {
-    this.num = 5;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad');
+    console.log('tabs ionViewDidLoad');
   }
 
   ionViewWillEnter() {
     this.appTranslationService.initTranslate();
-    console.log('ionViewWillEnter');
+    console.log('tabs ionViewWillEnter');
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidEnter');
+    console.log('tabs ionViewDidEnter');
+    this.unreadNum = PublicVar.getNotificationNum();
+    console.log('this.unreadNum: ' + this.unreadNum);
+    this.tabRef.select(0);
   }
 
   ionViewWillLeave() {
     if (this.timer) {
       clearInterval(this.timer);
     }
-    console.log('ionViewWillLeave');
+    console.log('tabs ionViewWillLeave');
   }
 
   ionViewDidLeave() {
-    console.log('ionViewDidLeave');
+    console.log('tabs ionViewDidLeave');
   }
 
   ionViewWillUnload() {
-    console.log('ionViewWillUnload');
+    console.log('tabs ionViewWillUnload');
   }
 
   ionViewCanEnter(){
-    console.log("ionViewCanEnter");
+    console.log("tabs ionViewCanEnter");
   }
 
   ionViewCanLeave(){
-    console.log("ionViewCanLeave");
+    console.log("tabs ionViewCanLeave");
   }
 }

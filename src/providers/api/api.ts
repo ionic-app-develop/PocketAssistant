@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions, URLSearchParams, RequestOptionsArgs} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { PublicVar } from './constant';
-import { Authentication } from './authentication';
+import { PublicVar } from '../constant';
+import { Authentication } from '../authentication';
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -11,7 +11,7 @@ export class Api {
   language:any;
   headers:Headers;
   baseURL:string;
-  constructor(public http: Http, 
+  constructor(public http: Http,
     public authentication: Authentication) {
       this.baseURL = PublicVar.GetBaseURL();
   }
@@ -25,6 +25,7 @@ export class Api {
     }
     this.headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8','Accept-Language': this.language, 'Authorization': 'Bearer ' + this.authentication.getToken() });
   }
+
   get(endpoint: string, paramMap?: any) {
     return this.http.get(this.baseURL + '/' + endpoint, new RequestOptions({
       search: this.buildURLSearchParams(paramMap),

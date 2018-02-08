@@ -1,5 +1,5 @@
 {
-  "name": "pocket assistant",
+  "name": "pocket-assistant",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -49,7 +49,6 @@
     "ionic2-jpush": "^0.1.1",
     "ionicons": "3.0.0",
     "jpush-phonegap-plugin": "git+https://github.com/jpush/jpush-phonegap-plugin.git",
-    "node-gyp": "^3.6.2",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.12"

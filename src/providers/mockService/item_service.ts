@@ -12,13 +12,13 @@ import 'rxjs/add/operator/map';
  *  http读取assets/json目录下的json文件
 */
 @Injectable()
-export class UserService {
+export class ItemService {
   data: string;
   constructor(public http: Http) {
-    console.log('Hello UserService Provider');
+    console.log('Hello ItemService Provider');
   }
-  public getUsers(): Observable<string> {
-    return this.http.get("assets/json/users.json")
+  public getItems(): Observable<string> {
+    return this.http.get("assets/json/items.json")
       .map(res => res.json().content);
   }
 }

@@ -9,11 +9,16 @@
  */
 export class Item {
 
-  constructor(private fields: any) {
+  constructor(fields: any) {
     // Quick and dirty extend/assign fields to this model
-    for (let f in this.fields) {
-      this[f] = this.fields[f];
+    for (const f in fields) {
+      // @ts-ignore
+      this[f] = fields[f];
     }
   }
 
+}
+
+export interface Item {
+  [prop: string]: any;
 }

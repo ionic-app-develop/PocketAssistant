@@ -5,9 +5,27 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText=" {{ 'todo.list.refresherPullingText' | translate }}" refreshingSpinner="circles"
-      refreshingText=" {{ 'todo.list.refreshingText' | translate }}">
-    </ion-refresher-content>
-  </ion-refresher>
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">-->
+    <!--<ion-refresher-content pullingIcon="arrow-dropdown" pullingText=" {{ 'todo.list.refresherPullingText' | translate }}" refreshingSpinner="circles"-->
+      <!--refreshingText=" {{ 'todo.list.refreshingText' | translate }}">-->
+    <!--</ion-refresher-content>-->
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of currentItems">
+        <button ion-item (click)="openItem(item)">
+          <ion-avatar item-start>
+            <img [src]="item.profilePic" />
+          </ion-avatar>
+          <h2>{{item.name}}</h2>
+          <p>{{item.about}}</p>
+          <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+        </button>
+
+        <ion-item-options>
+          <button ion-button color="danger" (click)="deleteItem(item)">
+            删除
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  <!--</ion-refresher>-->
 </ion-content>

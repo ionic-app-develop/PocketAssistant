@@ -10,14 +10,13 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { Authentication } from './../providers/authentication';
-import { Api } from '../providers/api';
+import { Api } from '../providers/providers';
+import { Items } from '../mocks/providers/items';
 import { ArrayPipe } from '../pipes/array_pipe';
 import { Camera } from '@ionic-native/camera';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { NFC, Ndef } from '@ionic-native/nfc';
 import { QRCodeModule } from 'angular2-qrcode';
 import {AppTranslationModule} from './app.translation.module';
 import {AppTranslationService} from './app.translation.service';
@@ -57,14 +56,12 @@ import { IonJPushModule } from 'ionic2-jpush'
   providers: [
     Authentication,
     Api,
+    Items,
     Camera,
     File,
     GoogleMaps,
     SplashScreen,
     StatusBar,
-    BarcodeScanner,
-    NFC,
-    Ndef,
     CameraProvider,
     ToastService,
     AppTranslationService,

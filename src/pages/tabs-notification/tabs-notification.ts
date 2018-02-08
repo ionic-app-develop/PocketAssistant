@@ -4,6 +4,10 @@ import {Storage} from '@ionic/storage';
 import {Component} from '@angular/core';
 import {NavController, AlertController, IonicPage} from 'ionic-angular';
 import {AppTranslationService} from "../../app/app.translation.service";
+import { Item } from '../../models/item';
+import { Items } from '../../providers/providers';
+import {ItemService} from "../../providers/mockService/item_service";
+import { PublicVar} from "../../providers/constant";
 
 @IonicPage({name: 'notification'})
 @Component({
@@ -11,6 +15,8 @@ import {AppTranslationService} from "../../app/app.translation.service";
   templateUrl: 'tabs-notification.html'
 })
 export class TabsNotification {
+  // currentItems: Item[];
+  currentItems: any = [];
   notifications = [];
 
   langKeys = [];
@@ -21,13 +27,27 @@ export class TabsNotification {
               private authentication: Authentication,
               private translateService: TranslateService,
               private alertCtrl: AlertController,
-              private appTranslationService: AppTranslationService) {
+              private appTranslationService: AppTranslationService,
+              private itemService: ItemService,
+              private items: Items,) {
   }
 
   ionViewWillEnter() {
+    this.currentItems = [];
     this.getNotifications();
     this.appTranslationService.initTranslate();
     this.initTranslateMessage();
+    // this.currentItems = this.items.query();
+    // console.log(this.currentItems);
+    this.itemService.getItems().subscribe(
+      (res) => {
+        PublicVar.setNotificationNum(res.length);
+        // localStorage.setItem('unreadNum', res.length.toString())
+        console.log('res.length: ' + PublicVar.getNotificationNum());
+        for (let item of res) {
+          this.currentItems.push(new Item(item));
+        }
+      });
   }
 
   ionViewDidEnter() {
@@ -43,6 +63,7 @@ export class TabsNotification {
   }
 
   doRefresh(refresher) {
+    // this.currentItems = this.items.query();
     console.log('Begin async operation', refresher);
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -53,6 +74,13 @@ export class TabsNotification {
   }
 
   openItem() {
+  }
+
+  /**
+   * Delete an item from the list of items.
+   */
+  deleteItem(item) {
+    this.items.delete(item);
   }
 
   private getNotifications() {
