@@ -1,14 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ 'notification.title' | translate }}</ion-title>
+    <ion-title (click)="add()">{{ 'notification.title' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <!--<ion-refresher (ionRefresh)="doRefresh($event)">-->
-    <!--<ion-refresher-content pullingIcon="arrow-dropdown" pullingText=" {{ 'todo.list.refresherPullingText' | translate }}" refreshingSpinner="circles"-->
-      <!--refreshingText=" {{ 'todo.list.refreshingText' | translate }}">-->
-    <!--</ion-refresher-content>-->
     <ion-list>
       <ion-item-sliding *ngFor="let item of currentItems">
         <button ion-item (click)="openItem(item)">
@@ -27,5 +23,4 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-  <!--</ion-refresher>-->
 </ion-content>

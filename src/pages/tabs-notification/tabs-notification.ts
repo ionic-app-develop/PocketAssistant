@@ -73,6 +73,10 @@ export class TabsNotification {
     this.getNotifications();
   }
 
+  add(){
+    PublicVar.setNotificationNum(PublicVar.getNotificationNum() + 1);
+  }
+
   openItem() {
   }
 

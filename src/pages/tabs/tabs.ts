@@ -15,7 +15,6 @@ export class TabsPage {
   public workRoot: any = 'work';
   public myRoot: any = 'my';
   @ViewChild('myTabs') tabRef: Tabs;
-  public unreadNum;
 
   private timer;
 
@@ -23,6 +22,10 @@ export class TabsPage {
               public translate: TranslateService,
               public appTranslationService: AppTranslationService,
               public storage: Storage) {
+  }
+
+  countNotificationItem(){
+    return PublicVar.getNotificationNum();
   }
 
   ionViewDidLoad() {
@@ -36,8 +39,6 @@ export class TabsPage {
 
   ionViewDidEnter() {
     console.log('tabs ionViewDidEnter');
-    this.unreadNum = PublicVar.getNotificationNum();
-    console.log('this.unreadNum: ' + this.unreadNum);
     this.tabRef.select(0);
   }
 

@@ -1,5 +1,5 @@
 <ion-tabs #myTabs>
-  <ion-tab tabsHideOnSubPages="true" [root]="notificationRoot" tabTitle="{{ 'notification.title' | translate }}" tabIcon="list" tabBadge="{{unreadNum}}" tabBadgeStyle="danger"></ion-tab>
+  <ion-tab tabsHideOnSubPages="true" [root]="notificationRoot" tabTitle="{{ 'notification.title' | translate }}" tabIcon="list" [tabBadge]="countNotificationItem()" tabBadgeStyle="danger"></ion-tab>
   <ion-tab tabsHideOnSubPages="true" [root]="workRoot" tabTitle="{{ 'work.title' | translate }}" tabIcon="open"></ion-tab>
   <ion-tab tabsHideOnSubPages="true" [root]="myRoot" tabTitle=" {{ 'mine.title' | translate }}" tabIcon="person"></ion-tab>
 </ion-tabs>
