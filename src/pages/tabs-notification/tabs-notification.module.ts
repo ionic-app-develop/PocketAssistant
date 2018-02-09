@@ -7,6 +7,7 @@ import {AppTranslationModule} from '../../app/app.translation.module';
 import {AppTranslationService} from '../../app/app.translation.service';
 import { Authentication } from '../../providers/authentication';
 import {ItemService} from "../../providers/mockService/item_service";
+import {NotificationService} from "../../providers/notification/notication.service";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ItemService} from "../../providers/mockService/item_service";
   providers: [
     AppTranslationService,
     ItemService,
+    NotificationService,
     Authentication
   ]
 })

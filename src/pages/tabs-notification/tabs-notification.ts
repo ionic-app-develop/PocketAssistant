@@ -6,7 +6,9 @@ import {NavController, AlertController, IonicPage} from 'ionic-angular';
 import {AppTranslationService} from "../../app/app.translation.service";
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
-import {ItemService} from "../../providers/mockService/item_service";
+// import {ItemService} from "../../providers/mockService/item_service";
+import { Notification } from '../../models/notification';
+import {NotificationService} from "../../providers/notification/notication.service";
 import { PublicVar} from "../../providers/constant";
 
 @IonicPage({name: 'notification'})
@@ -28,8 +30,9 @@ export class TabsNotification {
               private translateService: TranslateService,
               private alertCtrl: AlertController,
               private appTranslationService: AppTranslationService,
-              private itemService: ItemService,
-              private items: Items,) {
+              // private itemService: ItemService,
+              private notificationService: NotificationService,
+              private items: Items) {
   }
 
   ionViewWillEnter() {
@@ -39,15 +42,19 @@ export class TabsNotification {
     this.initTranslateMessage();
     // this.currentItems = this.items.query();
     // console.log(this.currentItems);
-    this.itemService.getItems().subscribe(
-      (res) => {
-        PublicVar.setNotificationNum(res.length);
-        // localStorage.setItem('unreadNum', res.length.toString())
-        console.log('res.length: ' + PublicVar.getNotificationNum());
-        for (let item of res) {
-          this.currentItems.push(new Item(item));
-        }
-      });
+    // this.itemService.getItems().subscribe(
+    //   (res) => {
+    //     PublicVar.setNotificationNum(res.length);
+    //     console.log('res.length: ' + PublicVar.getNotificationNum());
+    //     for (let item of res) {
+    //       this.currentItems.push(new Item(item));
+    //     }
+    //   });
+    this.notificationService.query().subscribe((res) => {
+      this.currentItems = res;
+    }, (err) => {
+      console.log('notification query error');
+    });
   }
 
   ionViewDidEnter() {
@@ -77,14 +84,21 @@ export class TabsNotification {
     PublicVar.setNotificationNum(PublicVar.getNotificationNum() + 1);
   }
 
-  openItem() {
+  openItem(item: Notification) {
+    this.navCtrl.push('notification-detail', {
+      item: item
+    });
   }
 
   /**
    * Delete an item from the list of items.
    */
   deleteItem(item) {
-    this.items.delete(item);
+    this.notificationService.delete(item).subscribe((res) => {
+      console.log('notification delete success');
+    }, (err) => {
+      console.log('notification query error');
+    });
   }
 
   private getNotifications() {

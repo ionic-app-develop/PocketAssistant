@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Http } from '@angular/http';
+import {NgModule} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateService} from '@ngx-translate/core';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateService } from '@ngx-translate/core';
-
-export function createTranslateLoader(http: Http) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 const translationOptions = {
   loader: {
     provide: TranslateLoader,
     useFactory: (createTranslateLoader),
-    deps: [Http]
+    deps: [HttpClient]
   }
 };
 

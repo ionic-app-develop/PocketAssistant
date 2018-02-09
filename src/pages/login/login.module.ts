@@ -6,6 +6,7 @@ import {AppTranslationModule} from '../../app/app.translation.module';
 import {AppTranslationService} from '../../app/app.translation.service';
 import { Authentication } from '../../providers/authentication';
 import { IonJPushModule } from 'ionic2-jpush'
+import { MyJPushService } from '../../providers/jpush/jpush.service'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { IonJPushModule } from 'ionic2-jpush'
   ],
   providers: [
     AppTranslationService,
+    MyJPushService,
     Authentication
   ]
 })

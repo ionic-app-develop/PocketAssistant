@@ -1,6 +1,6 @@
 import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { PublicVar } from './constant';
@@ -9,7 +9,7 @@ import { PublicVar } from './constant';
 export class Authentication {
   private serverIP: string;
 
-  constructor(public http: Http,
+  constructor(public http: HttpClient,
     public storage: Storage) {
   }
 
@@ -19,11 +19,11 @@ export class Authentication {
       this.storage.get('serverIP').then((val) => {
         this.serverIP = val;
         PublicVar.setBaseURL(this.serverIP );
-        let headers = new Headers();
+        let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         this.http.post(`http://${this.serverIP}/` + `login?requestId=${cred}`, null, { headers: headers })
           .subscribe(res => {
-            resolve(res.json());
+            resolve(res);
           }, (err) => {
             reject(err);
           });

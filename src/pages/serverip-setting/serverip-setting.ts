@@ -31,7 +31,9 @@ export class ServeripSettingPage {
   ionViewWillLeave() {
     if (!this.validateIPAddress())
       return;
-    PublicVar.setBaseURL(this.serverIP)
+    console.log('this.serverIP: ' + this.serverIP);
+    PublicVar.setBaseURL(this.serverIP);
+    console.log('this.getBaseURL: ' + PublicVar.GetBaseURL());
     this.storage.set('serverIP', this.serverIP);
   }
 

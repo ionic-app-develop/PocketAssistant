@@ -10,6 +10,7 @@ import {Authentication} from './../../providers/authentication';
 import {AppTranslationService} from "../../app/app.translation.service";
 import { TabsPage } from '../../pages/tabs/tabs';
 import {JPushService} from 'ionic2-jpush'
+import { MyJPushService } from '../../providers/jpush/jpush.service'
 
 @IonicPage({name: 'login'})
 @Component({
@@ -63,6 +64,7 @@ export class LoginPage {
               private toastService: ToastService,
               private storage: Storage,
               private jPushPlugin: JPushService,
+              private myJPushService: MyJPushService,
               private platform: Platform,) {
     storage.get('rememberMe').then((val) => {
       this.rememberMe = val;
@@ -81,7 +83,7 @@ export class LoginPage {
       this.jPushPlugin.openNotification()
         .subscribe(res => {
           console.log('收到推送' + res);
-          // this.navCtrl.push(TabsPage);
+          this.navCtrl.push(TabsPage);
         });
 
       this.jPushPlugin.receiveNotification()
