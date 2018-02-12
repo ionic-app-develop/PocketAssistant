@@ -2,7 +2,7 @@ import {PipesModule} from './../pipes/pipes.module';
 import {File} from '@ionic-native/file';
 import {IonicImageViewerModule} from 'ionic-img-viewer';
 import {ToastService} from './../providers/util/toast.service';
-import {CameraProvider} from './../providers/util/camera.provider';
+import {CameraProvider} from '../providers/util/camera.service';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
@@ -10,10 +10,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {IonicStorageModule} from '@ionic/storage';
 import {MyApp} from './app.component';
-import {Authentication} from './../providers/authentication';
+import {Authentication} from '../providers/authentication.service';
 import {Api} from '../providers/providers';
 import {Items} from '../mocks/providers/items';
-import {ArrayPipe} from '../pipes/array_pipe';
 import {Camera} from '@ionic-native/camera';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -28,7 +27,6 @@ import {IonJPushModule} from 'ionic2-jpush'
 @NgModule({
   declarations: [
     MyApp,
-    ArrayPipe,
     TabsPage,
     SettingPage
   ],

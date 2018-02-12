@@ -4,7 +4,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'arrayListPipe',
+  name: 'arrayPipe',
   pure: false
 })
 export class ArrayPipe implements PipeTransform {

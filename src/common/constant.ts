@@ -5,6 +5,7 @@ export class PublicVar {
   private static userName: string;
   private static userId: string;
   private static notificationNum: any;
+  private static hasNewNotification: boolean;
 
   public static GetBasePort(): string {
     return this.basePort;
@@ -52,5 +53,13 @@ export class PublicVar {
 
   public static setNotificationNum(notificationNum: any) {
     this.notificationNum = notificationNum;
+  }
+
+  public static getHasNewNotification() {
+    return this.hasNewNotification;
+  }
+
+  public static setHasNewNotification(hasNewNotification: boolean) {
+    this.hasNewNotification = hasNewNotification;
   }
 }

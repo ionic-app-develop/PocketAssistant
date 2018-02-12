@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'stringPipe'
+    name: 'ellipsisPipe'
 })
 
-export class StringPipe implements PipeTransform {
+export class EllipsisPipe implements PipeTransform {
 
     transform(value, args): any {
         if (!value || args == null)

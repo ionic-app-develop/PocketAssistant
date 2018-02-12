@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Notification } from '../../models/notification';
+import { JPushAppUserMaps } from '../../models/jpushAppUserMaps.model';
 import { Api } from '../api/api';
 
 @Injectable()
@@ -18,13 +18,13 @@ export class MyJPushService {
     return seq;
   }
 
-  add(obj) {
-    let seq = this.api.post('jpushAppUserMaps', obj).share();
+  add(jPushAppUserMaps: JPushAppUserMaps) {
+    let seq = this.api.post('jpushAppUserMaps', jPushAppUserMaps).share();
     return seq;
   }
 
-  delete(id) {
-    return this.api.delete('jpushAppUserMaps/'+ id);
+  delete(jPushAppUserMaps: JPushAppUserMaps) {
+    return this.api.delete('jpushAppUserMaps/'+ jPushAppUserMaps.jpushAppId);
   }
 
 }

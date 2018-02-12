@@ -1,8 +1,18 @@
-import { StringPipe } from './string_pipe';
+import { EllipsisPipe } from './ellipsis.pipe';
 import { NgModule } from '@angular/core';
+import {DateDiffPipe} from "./dateDiff.pipe";
+import {ArrayPipe} from "./array.pipe";
 @NgModule({
-	declarations: [StringPipe],
+	declarations: [
+    ArrayPipe,
+    EllipsisPipe,
+    DateDiffPipe
+  ],
 	imports: [],
-	exports: [StringPipe]
+	exports: [
+    ArrayPipe,
+    EllipsisPipe,
+    DateDiffPipe
+  ]
 })
 export class PipesModule {}

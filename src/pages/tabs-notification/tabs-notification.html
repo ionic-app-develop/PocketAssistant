@@ -1,26 +1,36 @@
-<ion-header>
+<ion-header no-shadow>
   <ion-navbar>
-    <ion-title (click)="add()">{{ 'notification.title' | translate }}</ion-title>
+    <ion-title>{{ 'notification.title' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
-      <ion-item-sliding *ngFor="let item of currentItems">
-        <button ion-item (click)="openItem(item)">
-          <ion-avatar item-start>
-            <img [src]="item.icon" />
-          </ion-avatar>
-          <h2>{{item.title}}</h2>
-          <p>{{item.content}}</p>
-          <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-        </button>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles"
+                           refreshingText="正在努力加载....">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list no-lines="true">
+    <ion-item-sliding *ngFor="let item of currentItems">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start class="avatar">
+          <img [src]="item.icon"/>
+          <div *ngIf="!item.readed" class="avatar-badge"></div>
+        </ion-avatar>
+        <h2>{{item.title}}</h2>
+        <p>{{item.content}}</p>
+        <ion-note item-end *ngIf="item.createTime">
+          {{item.createTime | dateDiffPipe}}
+        </ion-note>
+      </button>
 
-        <ion-item-options>
-          <button ion-button color="danger" (click)="deleteItem(item)">
-            删除
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          <ion-icon name="trash"></ion-icon>
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
 </ion-content>

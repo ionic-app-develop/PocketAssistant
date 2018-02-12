@@ -4,7 +4,7 @@ export class Notification {
   }
 
   notificationId: string;
-  readed: string;
+  readed: boolean;
   category: string;
   title: string;
   content: string;

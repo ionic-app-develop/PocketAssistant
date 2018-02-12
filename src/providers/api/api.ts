@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { PublicVar } from '../constant';
-import { Authentication } from '../authentication';
+import { PublicVar } from '../../common/constant';
+import { Authentication } from '../authentication.service';
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -49,18 +49,18 @@ export class Api {
   }
 
   post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post(this.baseURL + '/' + endpoint, body, reqOpts);
+    return this.http.post(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(this.baseURL + '/' + endpoint, body, reqOpts);
+    return this.http.put(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
   }
 
   delete(endpoint: string, reqOpts?: any) {
-    return this.http.delete(this.baseURL + '/' + endpoint);
+    return this.http.delete(PublicVar.GetBaseURL() + '/api/' + endpoint);
   }
 
   patch(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(this.baseURL + '/' + endpoint, body, reqOpts);
+    return this.http.put(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
   }
 }

@@ -1,15 +1,12 @@
 import {TranslateService} from '@ngx-translate/core';
-import {Authentication} from './../../providers/authentication';
 import {Storage} from '@ionic/storage';
 import {Component} from '@angular/core';
 import {NavController, AlertController, IonicPage} from 'ionic-angular';
 import {AppTranslationService} from "../../app/app.translation.service";
-import { Item } from '../../models/item';
-import { Items } from '../../providers/providers';
-// import {ItemService} from "../../providers/mockService/item_service";
-import { Notification } from '../../models/notification';
-import {NotificationService} from "../../providers/notification/notication.service";
-import { PublicVar} from "../../providers/constant";
+import {Item, Notification} from '../../models/index';
+import {Authentication, Items, ItemService, NotificationService} from '../../providers/providers';
+import {Utils} from "../../common/utils";
+import {PublicVar} from "../../common/constant";
 
 @IonicPage({name: 'notification'})
 @Component({
@@ -18,8 +15,9 @@ import { PublicVar} from "../../providers/constant";
 })
 export class TabsNotification {
   // currentItems: Item[];
+  private timer;
   currentItems: any = [];
-  notifications = [];
+  notifications: any = [];
 
   langKeys = [];
   langMap: Map<string, any> = new Map<string, any>();
@@ -36,25 +34,15 @@ export class TabsNotification {
   }
 
   ionViewWillEnter() {
-    this.currentItems = [];
-    this.getNotifications();
     this.appTranslationService.initTranslate();
     this.initTranslateMessage();
-    // this.currentItems = this.items.query();
-    // console.log(this.currentItems);
-    // this.itemService.getItems().subscribe(
-    //   (res) => {
-    //     PublicVar.setNotificationNum(res.length);
-    //     console.log('res.length: ' + PublicVar.getNotificationNum());
-    //     for (let item of res) {
-    //       this.currentItems.push(new Item(item));
-    //     }
-    //   });
-    this.notificationService.query().subscribe((res) => {
-      this.currentItems = res;
-    }, (err) => {
-      console.log('notification query error');
-    });
+    this.getNotifications();
+    this.timer = setInterval(() => {
+      if (PublicVar.getHasNewNotification()) {
+        this.getNotifications();
+        PublicVar.setHasNewNotification(false)
+      }
+    }, 5000)
   }
 
   ionViewDidEnter() {
@@ -73,20 +61,32 @@ export class TabsNotification {
     // this.currentItems = this.items.query();
     console.log('Begin async operation', refresher);
     setTimeout(() => {
+      this.getNotifications();
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
-
-    this.getNotifications();
   }
 
-  add(){
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.getNotifications();
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }
+
+  add() {
     PublicVar.setNotificationNum(PublicVar.getNotificationNum() + 1);
   }
 
   openItem(item: Notification) {
     this.navCtrl.push('notification-detail', {
       item: item
+    });
+    item.readed = true;
+    this.notificationService.update(item).subscribe((res) => {
+      this.getNotifications();
     });
   }
 
@@ -95,14 +95,34 @@ export class TabsNotification {
    */
   deleteItem(item) {
     this.notificationService.delete(item).subscribe((res) => {
-      console.log('notification delete success');
-    }, (err) => {
-      console.log('notification query error');
+      this.getNotifications();
     });
   }
 
   private getNotifications() {
-    this.notifications = [];
+    this.currentItems = [];
+    let username = '';
+    this.notificationService.query().subscribe((res) => {
+      let notifications: any = [];
+      notifications = res;
+      if(notifications.length>0){
+        this.currentItems = Utils.order(notifications,'createTime','desc');
+      }
+      // PublicVar.setNotificationNum(this.currentItems.length);
+    }, (err) => {
+      console.log('notification query error');
+    });
+    this.storage.get('username').then((val) => {
+      username = val;
+      this.notificationService.queryUnReadNotificationNum({readed: false, loginUserId: username}).subscribe((res) => {
+        let unReadNotifications: any =  [];
+        unReadNotifications = res;
+        let unReadNotificationNum = unReadNotifications.length;
+        PublicVar.setNotificationNum(unReadNotificationNum);
+      }, (err) => {
+        console.log('notification query error');
+      });
+    });
   }
 
 }

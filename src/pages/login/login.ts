@@ -1,16 +1,14 @@
-import {PublicVar} from './../../providers/constant';
-import {ToastService} from './../../providers/util/toast.service';
+import {PublicVar} from '../../common/constant';
 import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {IonicPage, NavController, Platform} from 'ionic-angular';
 import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
-import {Account} from '../../models/account';
-import {Authentication} from './../../providers/authentication';
+import {Account, JPushAppUserMaps} from '../../models/index';
 import {AppTranslationService} from "../../app/app.translation.service";
-import { TabsPage } from '../../pages/tabs/tabs';
+import {TabsPage} from '../../pages/tabs/tabs';
 import {JPushService} from 'ionic2-jpush'
-import { MyJPushService } from '../../providers/jpush/jpush.service'
+import {Authentication, ToastService, MyJPushService} from '../../providers/providers'
 
 @IonicPage({name: 'login'})
 @Component({
@@ -25,6 +23,8 @@ export class LoginPage {
   submitted: boolean = false;
   rememberMe: boolean = false;
   backgroundImage = '';
+  registerId = '';
+  jpushAppUserMaps = new JPushAppUserMaps();
 
   @ViewChild('input') passwordInput;
 
@@ -41,7 +41,7 @@ export class LoginPage {
     this._log += `${new Date().toLocaleString()}: ${m} \n`
   }
 
-  asyncStack:string[] = [];
+  asyncStack: string[] = [];
 
   _addStack(name: string) {
     this.asyncStack = Array.from(new Set([...this.asyncStack, name]))
@@ -54,7 +54,7 @@ export class LoginPage {
   }
 
   _hasInStack(name: string): boolean {
-    return  this.asyncStack.indexOf(name) !== -1
+    return this.asyncStack.indexOf(name) !== -1
   }
 
   constructor(public navCtrl: NavController,
@@ -83,11 +83,14 @@ export class LoginPage {
       this.jPushPlugin.openNotification()
         .subscribe(res => {
           console.log('收到推送' + res);
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.push('notification-detail', {
+            item: {title: res.title, content: res.alert}
+          });
         });
 
       this.jPushPlugin.receiveNotification()
         .subscribe(res => {
+          PublicVar.setHasNewNotification(true);
           console.log('收到推送' + res);
         });
 
@@ -97,7 +100,7 @@ export class LoginPage {
         });
 
       // 平台判断
-      if(this.platform.is("android") || this.platform.is("ios")){
+      if (this.platform.is("android") || this.platform.is("ios")) {
         this.init();
       }
     })
@@ -117,7 +120,9 @@ export class LoginPage {
    */
   getRegistrationID() {
     this.jPushPlugin.getRegistrationID()
-      .then(res => console.log('注册极光' + res))
+      .then(res =>
+        this.jpushAppUserMaps.jpushAppId = res.toString()
+      )
       .catch(err => alert(err))
   }
 
@@ -177,7 +182,7 @@ export class LoginPage {
       sequence: Date.now(),
       alias: 'test_alia'
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `设置别名成功 别名：${res.alias}`;
         this._rmStack('setAlias');
       })
@@ -196,7 +201,7 @@ export class LoginPage {
     this.jPushPlugin.deleteAlias({
       sequence: Date.now(),
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `删除别名成功`;
         this._rmStack('deleteAlias');
       })
@@ -215,7 +220,7 @@ export class LoginPage {
     this.jPushPlugin.getAlias({
       sequence: Date.now(),
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `获取别名成功: 别名：${res.alias}`;
         this._rmStack('getAlias');
       })
@@ -235,7 +240,7 @@ export class LoginPage {
       sequence: Date.now(),
       tags: ['tag1', 'tag2']
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `设置 Tags 成功：${res.tags.toString()}`;
         this._rmStack('setTags');
       })
@@ -255,7 +260,7 @@ export class LoginPage {
       sequence: Date.now(),
       tags: ['tag4', 'tag5']
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `添加 Tags 成功：${res.tags.toString()}`;
         this._rmStack('addTags');
       })
@@ -274,7 +279,7 @@ export class LoginPage {
     this.jPushPlugin.cleanTags({
       sequence: Date.now(),
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `清除所有 Tags 成功`;
         this._rmStack('cleanTags');
       })
@@ -293,7 +298,7 @@ export class LoginPage {
     this.jPushPlugin.getAllTags({
       sequence: Date.now(),
     })
-      .then((res:any) => {
+      .then((res: any) => {
         this.log = `获取当前绑定的所有 Tags 成功：${res.tags.toString()}`;
         this._rmStack('getAllTags');
       })
@@ -308,7 +313,7 @@ export class LoginPage {
     this.appTranslationService.initTranslate();
     this.initTranslateMessage();
     // 平台
-    if(this.platform.is("android") || this.platform.is("ios")){
+    if (this.platform.is("android") || this.platform.is("ios")) {
       this.getRegistrationID();
     }
   }
@@ -335,6 +340,10 @@ export class LoginPage {
     this.authentication.login(this.login.username, this.login.password).then((res) => {
       if (res && res[0].LogonId && res[0].token) {
         this.saveLocal(res);
+        this.jpushAppUserMaps.loginUserId = res[0].LogonId;
+        this.myJPushService.add(this.jpushAppUserMaps).subscribe((res) => {
+          console.log('jpushAppUserMaps: ' + JSON.stringify(res))
+        });;
         this.navCtrl.push(TabsPage);
       } else if (res && res[0].error) {
         this.toastService.create(this.passwordErrorTip);

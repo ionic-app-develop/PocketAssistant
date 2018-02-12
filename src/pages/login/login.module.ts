@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { LoginPage } from './login';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {LoginPage} from './login';
 
 import {AppTranslationModule} from '../../app/app.translation.module';
 import {AppTranslationService} from '../../app/app.translation.service';
-import { Authentication } from '../../providers/authentication';
-import { IonJPushModule } from 'ionic2-jpush'
-import { MyJPushService } from '../../providers/jpush/jpush.service'
+import {Authentication} from '../../providers/authentication.service';
+import {IonJPushModule} from 'ionic2-jpush'
+import {MyJPushService} from '../../providers/providers'
 
 @NgModule({
   declarations: [
@@ -23,4 +23,5 @@ import { MyJPushService } from '../../providers/jpush/jpush.service'
     Authentication
   ]
 })
-export class LoginPageModule {}
+export class LoginPageModule {
+}

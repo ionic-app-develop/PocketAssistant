@@ -3,7 +3,7 @@ import {NavController, Tabs} from 'ionic-angular';
 import {TranslateService} from '@ngx-translate/core';
 import {AppTranslationService} from "../../app/app.translation.service";
 import { Storage } from '@ionic/storage';
-import { PublicVar} from "../../providers/constant";
+import { PublicVar} from "../../common/constant";
 
 // @IonicPage({name: 'tabs'})
 @Component({

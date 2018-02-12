@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Notification } from '../../models/notification';
+import { Notification } from '../../models/notification.model';
 import { Api } from '../api/api';
 
 @Injectable()
@@ -18,7 +18,14 @@ export class NotificationService {
     return seq;
   }
 
-  add(notification: Notification) {
+  queryUnReadNotificationNum(params?: any) {
+    let seq = this.api.get('notifications', params).share();
+    return seq;
+  }
+
+  update(notification: Notification) {
+    let seq = this.api.put('notifications', notification).share();
+    return seq;
   }
 
   delete(notification: Notification) {

@@ -1,5 +1,5 @@
 import { ToastService } from './../../providers/util/toast.service';
-import { PublicVar } from './../../providers/constant';
+import { PublicVar } from '../../common/constant';
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
