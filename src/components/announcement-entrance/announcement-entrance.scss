@@ -1,0 +1,29 @@
+announcement-entrance {
+  $errorColor:#f95372;
+    .cardHeader {
+        background-color: #F2F2F2;
+        height: 35px;
+      }
+    .card-content {
+        padding: 7px 7px;
+        line-height: 1.5;
+    }
+    .labelPadding{
+         padding:0 0 0 15px;
+     }
+    .divContainer{
+        height: 100px;
+    }
+   .divLeft {
+     width: 20%;
+     height: 100%;
+     float: left;
+     display: -webkit-box;
+     -webkit-box-align: center;
+   }
+   .divRight {
+     width: 80%;
+     height: 100%;
+     float: right;
+   }
+}

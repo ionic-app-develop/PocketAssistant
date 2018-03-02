@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'work.announcement.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines="true">
+    <ion-item-sliding *ngFor="let item of announcements">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start class="avatar">
+          <img [src]="getImgPath(item.emergencyLevel)" alt="Ionic logo"/>
+        </ion-avatar>
+        <h2>{{item.title}}</h2>
+        <p>{{item.content}}</p>
+        <ion-note item-end *ngIf="item.createTime">
+          {{item.createTime | dateDiffPipe}}
+        </ion-note>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

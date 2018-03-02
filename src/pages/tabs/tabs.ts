@@ -14,6 +14,7 @@ export class TabsPage {
   public notificationRoot: any = 'notification';
   public workRoot: any = 'work';
   public myRoot: any = 'my';
+
   @ViewChild('myTabs') tabRef: Tabs;
 
   private timer;

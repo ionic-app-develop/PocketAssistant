@@ -1,0 +1,22 @@
+<ion-card>
+  <!--<ion-card-content class="cardHeader">-->
+  <!--<h2>-->
+  <!--{{ 'work.announcement.title' | translate }}-->
+  <!--</h2>-->
+  <!--</ion-card-content>-->
+  <div class="divContainer">
+    <div class="divLeft">
+        <ion-avatar item-start class="avatar">
+          <img src="assets/img/logo.png" alt="Ionic logo"/>
+        </ion-avatar>
+    </div>
+    <div class="divRight">
+        <marquee id='announcementMarquee' runat="server" behavior="scroll" direction="up"
+                 style="width:100%; height: 100px;" scrollAmount=2 scrolldelay="100" loop="-1"
+                 hspace="10"  vspace="10" align="left"
+                 (click)="navigateToAnnounceListPage()">
+        </marquee>
+    </div>
+  </div>
+
+</ion-card>

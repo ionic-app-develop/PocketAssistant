@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'work.announcement.detailTitle' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="announcement">
+    <div class="divTitle">{{announcement.title}}</div>
+    <div *ngIf="announcement.category" class="divMargin">
+      {{ 'work.announcement.type' | translate }}{{announcement.category}}
+    </div>
+    <div *ngIf="announcement.emergencyLevel" class="divMargin">
+      {{ 'work.announcement.emergencyLevel' | translate }}{{announcement.emergencyLevel}}
+    </div>
+    <div *ngIf="announcement.sender" class="divMargin">
+      {{ 'work.announcement.publisher' | translate }}{{announcement.sender}}
+    </div>
+    <div *ngIf="announcement.createTime" class="divMargin">
+      {{ 'work.announcement.createTime' | translate }}{{announcement.createTime}}
+    </div>
+    <div class="divContent">
+      {{announcement.content}}
+    </div>
+  </div>
+</ion-content>

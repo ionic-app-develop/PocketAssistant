@@ -9,7 +9,7 @@ export class NotificationService {
   constructor(public api: Api) { }
 
   queryOne(params?: any) {
-    let seq = this.api.get('notifications' + params).share();
+    let seq = this.api.get('notifications', params).share();
     return seq;
   }
 
@@ -24,12 +24,10 @@ export class NotificationService {
   }
 
   update(notification: Notification) {
-    let seq = this.api.put('notifications', notification).share();
-    return seq;
+    return this.api.put('notifications', notification);
   }
 
   delete(notification: Notification) {
-    console.log(notification);
     return this.api.delete('notifications/'+ notification.notificationId);
   }
 

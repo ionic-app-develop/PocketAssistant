@@ -36,7 +36,17 @@
     "serverIP": "服务器IP"
   },
   "notification": {"title": "消息"},
-  "work": {"title": "工作台"},
+  "work": {
+    "title": "工作台",
+    "announcement": {
+      "title": "公告",
+      "detailTitle":"公告详情",
+      "type":"公告类型：",
+      "emergencyLevel":"紧急度：",
+      "publisher":"发布人：",
+      "createTime":"发布日期："
+    }
+  },
   "mine": {
     "title": "我的",
     "qrCode": "二维码下载",

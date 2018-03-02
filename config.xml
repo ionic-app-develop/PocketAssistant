@@ -93,4 +93,5 @@
         <variable name="APP_KEY" value="9844ef6cf746572bf3a6310f" />
     </plugin>
     <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-plugin-themeablebrowser" spec="^0.2.17" />
 </widget>

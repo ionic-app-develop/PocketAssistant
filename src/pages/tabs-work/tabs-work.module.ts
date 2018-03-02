@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TabsWork } from './tabs-work';
 import {AppTranslationModule} from '../../app/app.translation.module';
 import {AppTranslationService} from '../../app/app.translation.service';
+import {ComponentsModule} from "../../components/components.module"
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import {AppTranslationService} from '../../app/app.translation.service';
   ],
   imports: [
     IonicPageModule.forChild(TabsWork),
-    AppTranslationModule
+    AppTranslationModule,
+    ComponentsModule
   ],
   entryComponents: [
     TabsWork

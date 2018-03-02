@@ -1,0 +1,20 @@
+page-announcement-detail {
+  .divTitle{
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+       margin:15px 5px 15px 5px;
+   }
+   .divMargin{
+      margin:10px 5px 5px 5px;
+      font-size: 12px;
+      -webkit-text-fill-color: gray;
+   }
+   .divContent{
+      margin:20px 5px 5px 5px;
+      font-size: 16px;
+      font-family: "Times New Roman", Times;
+      text-indent:40px;
+      line-height:150%
+   }
+}
