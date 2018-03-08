@@ -9,6 +9,7 @@ import {AppTranslationService} from "../../app/app.translation.service";
 import {TabsPage} from '../../pages/tabs/tabs';
 import {JPushService} from 'ionic2-jpush'
 import {Authentication, ToastService, MyJPushService} from '../../providers/providers'
+import {ThemeableBrowser, ThemeableBrowserObject, ThemeableBrowserOptions} from '@ionic-native/themeable-browser';
 
 @IonicPage({name: 'login'})
 @Component({
@@ -27,7 +28,66 @@ export class LoginPage {
 
   @ViewChild('input') passwordInput;
 
-  constructor(public navCtrl: NavController,
+  options: ThemeableBrowserOptions = {
+    statusbar: {
+      color: '#ffffffff'
+    },
+    toolbar: {
+      height: 44,
+      color: '#f0f0f0ff'
+    },
+    title: {
+      color: '#003264ff',
+      showPageTitle: true
+    },
+    backButton: {
+      image: 'back',
+      imagePressed: 'back_pressed',
+      align: 'left',
+      event: 'backPressed'
+    },
+    forwardButton: {
+      image: 'forward',
+      imagePressed: 'forward_pressed',
+      align: 'left',
+      event: 'forwardPressed'
+    },
+    closeButton: {
+      image: 'close',
+      imagePressed: 'close_pressed',
+      align: 'left',
+      event: 'closePressed'
+    },
+    customButtons: [
+      {
+        image: 'share',
+        imagePressed: 'share_pressed',
+        align: 'right',
+        event: 'sharePressed'
+      }
+    ],
+    menu: {
+      image: 'menu',
+      imagePressed: 'menu_pressed',
+      title: 'Test',
+      cancel: 'Cancel',
+      align: 'right',
+      items: [
+        {
+          event: 'helloPressed',
+          label: 'Hello World!'
+        },
+        {
+          event: 'testPressed',
+          label: 'Test!'
+        }
+      ]
+    },
+    backButtonCanClose: true
+  };
+
+
+  constructor(private navCtrl: NavController,
               private authentication: Authentication,
               private translateService: TranslateService,
               private appTranslationService: AppTranslationService,
@@ -35,7 +95,8 @@ export class LoginPage {
               private storage: Storage,
               private jPushPlugin: JPushService,
               private myJPushService: MyJPushService,
-              private platform: Platform,) {
+              private platform: Platform,
+              private themeableBrowser: ThemeableBrowser) {
     storage.get('rememberMe').then((val) => {
       this.rememberMe = val;
       if (this.rememberMe) {
@@ -53,8 +114,12 @@ export class LoginPage {
       this.jPushPlugin.openNotification()
         .subscribe(res => {
           console.log('收到推送' + res);
+          let extraParams = JSON.parse(res.extras.extraParams);
+          let notificationId = extraParams.notificationId;
+          let link = extraParams.link;
+          // let browser: ThemeableBrowserObject = this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
           this.navCtrl.push('notification-detail', {
-            item: {title: res.title, content: res.alert}
+            item: {title: res.title, content: res.alert, notificationId: notificationId}
           });
         });
 
@@ -73,7 +138,7 @@ export class LoginPage {
       if (this.platform.is("android") || this.platform.is("ios")) {
         this.init();
       }
-    })
+      })
   }
 
   /**
@@ -130,7 +195,7 @@ export class LoginPage {
         this.jpushAppUserMaps.loginUserId = res[0].LogonId;
         this.myJPushService.add(this.jpushAppUserMaps).subscribe((res) => {
           console.log('jpushAppUserMaps: ' + JSON.stringify(res))
-        });;
+        });
         this.navCtrl.push(TabsPage);
       } else if (res && res[0].error) {
         this.toastService.create(this.passwordErrorTip);

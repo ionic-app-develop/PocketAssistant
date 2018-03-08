@@ -1,18 +1,11 @@
 announcement-entrance {
-  $errorColor:#f95372;
-    .cardHeader {
-        background-color: #F2F2F2;
-        height: 35px;
-      }
-    .card-content {
-        padding: 7px 7px;
-        line-height: 1.5;
+    .cardContainer{
+        height: 100px;
+        background-color: #FFF;
     }
-    .labelPadding{
-         padding:0 0 0 15px;
-     }
     .divContainer{
         height: 100px;
+        width:100%;
     }
    .divLeft {
      width: 20%;

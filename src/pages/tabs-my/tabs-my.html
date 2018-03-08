@@ -21,24 +21,37 @@
 
   <ion-list>
     <button ion-item (click)="setting()">
-        <ion-icon name="settings" item-left color="primary"></ion-icon>
+        <ion-icon name="settings" item-left class="icon"></ion-icon>
         {{ 'mine.setting' | translate }}
       </button>
   </ion-list>
   <ion-list>
     <button ion-item (click)="exitSoftware()" hideWhen="ios" detail-none>
-        <ion-icon name="log-out" item-left></ion-icon>
+        <ion-icon name="log-out" item-left class="icon"></ion-icon>
         {{ 'mine.exitPlatform' | translate }}
       </button>
     <button ion-item (click)="loginOut()" detail-none>
-        <ion-icon name="log-in" item-left></ion-icon>
+        <ion-icon name="log-in" item-left class="icon"></ion-icon>
         {{ 'mine.relogin' | translate }}
       </button>
   </ion-list>
   <ion-list>
     <button ion-item (click)="about()">
-        <ion-icon name="information-circle" item-left color="secondary"></ion-icon>
+        <ion-icon name="information-circle" item-left class="icon"></ion-icon>
         {{ 'mine.about' | translate }}
       </button>
   </ion-list>
+  <ion-list>
+    <button ion-item (click)="changeTheme()">
+      <ion-icon name="bulb" item-left class="icon"></ion-icon>
+      Toggle Theme
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="hotPush()">
+      <ion-icon name="refresh-circle" item-left class="icon"></ion-icon>
+      HotPush6666
+    </button>
+  </ion-list>
+
 </ion-content>

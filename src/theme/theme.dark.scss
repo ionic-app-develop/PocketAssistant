@@ -1,0 +1,35 @@
+.dark-theme {
+  ion-content {
+    //background-color: #090f2f;
+    color: #8a4182;
+  }
+
+  .toolbar-title {
+    color: #fff;
+  }
+
+  .header .toolbar-background {
+    background-color: #55acee;
+  }
+
+  .tabs-md {
+    .tab-button {
+      color: darkmagenta;
+      background-color: #55acee;
+    }
+    .tab-button[aria-selected="true"] {
+      color: blue;
+      .tab-button-icon {
+        color: blue;
+      }
+    }
+    .tab-button-icon {
+      color: darkmagenta;
+    }
+  }
+
+  .icon {
+    color: #55acee;
+  }
+
+}

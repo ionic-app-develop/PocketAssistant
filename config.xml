@@ -22,6 +22,12 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <chcp>
+        <auto-download enabled="true" />
+        <auto-install enabled="true" />
+        <native-interface version="1" />
+        <config-file url="http://hotpush.applinzi.com/chcp.json" />
+    </chcp>
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -92,6 +98,8 @@
     <plugin name="jpush-phonegap-plugin" spec="git+https://github.com/jpush/jpush-phonegap-plugin.git">
         <variable name="APP_KEY" value="9844ef6cf746572bf3a6310f" />
     </plugin>
-    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-themeablebrowser" spec="^0.2.17" />
+    <plugin name="cordova-hot-code-push-plugin" spec="^1.5.3" />
+    <plugin name="cordova-hot-code-push-local-dev-addon" spec="^0.4.2" />
+    <engine name="android" spec="6.3.0" />
 </widget>

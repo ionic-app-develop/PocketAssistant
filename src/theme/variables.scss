@@ -77,8 +77,12 @@ ion-title {
   text-align: center;
 }
 .item .item-block{
-  font-size: 1.4rem;  
+  font-size: 1.4rem;
 }
+
+//$tabs-md-tab-icon-color: blue !important;
+//$tabs-md-tab-icon-color-active : #32db64 !important;
+
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
@@ -88,6 +92,8 @@ ion-title {
 
 @import "ionic.theme.default";
 
+@import "theme.light";
+@import "theme.dark";
 
 // Ionicons
 // --------------------------------------------------

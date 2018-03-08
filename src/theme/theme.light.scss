@@ -1,0 +1,33 @@
+.light-theme {
+  ion-content {
+    background-color: #fff;
+  }
+
+  .toolbar-background {
+    background-color: #fff;
+  }
+
+  .tabs-md {
+    //.tab-button {
+      //color: #55acee;
+      //background-color: #55acee;
+    //}
+    .tab-button[aria-selected="true"] {
+      color: green;
+      .tab-button-icon {
+        color: green;
+      }
+    }
+    .tab-button-icon {
+      color: gray;
+    }
+  }
+
+  //.tab-button-text {
+  //  color: lightseagreen;
+  //}
+
+  .icon {
+    color: #F7C942;
+  }
+}

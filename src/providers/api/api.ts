@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { PublicVar } from '../../common/constant';
 import { Authentication } from '../authentication.service';
+import { Storage } from '@ionic/storage';
+
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
@@ -12,10 +14,17 @@ export class Api {
   headers:HttpHeaders;
   baseURL:string;
   constructor(public http: HttpClient,
+              public storage: Storage,
     public authentication: Authentication) {
-    this.baseURL = PublicVar.GetBaseURL() + '/api';
   }
+
   init() {
+    // this.storage.get('serverIP').then((val) => {
+    //   this.baseURL = 'http://' + val;
+    //   this.baseURL += '/api/';
+    // });
+    this.baseURL = PublicVar.GetBaseURL() + '/api/';
+
     this.language='en-US,en;q=0.5';   // q是权重系数，范围 0 =< q <= 1，q 值越大，请求越倾向于获得其“;”之前的类型表示的内容，若没有指定 q 值，则默认为1，若被赋值为0，则用于提醒服务器哪些是浏览器不接受的内容类型。
     if (localStorage.langKey) {
       const lang = localStorage.langKey;
@@ -27,6 +36,7 @@ export class Api {
   }
 
   get(endpoint: string, params?: any, reqOpts?: any) {
+    this.init();
     if (!reqOpts) {
       reqOpts = {
         params: new HttpParams(),
@@ -41,26 +51,30 @@ export class Api {
         reqOpts.params = reqOpts.params.set(k, params[k]);
       }
     }
-    console.log("this.baseURL: " + PublicVar.GetBaseURL());
+    console.log("this.baseURL: " + this.baseURL);
     console.log("this.endpoint: " + endpoint);
     console.log("this.reqOpts: " + reqOpts);
 
-    return this.http.get(PublicVar.GetBaseURL() + '/api/' + endpoint, reqOpts);
+    return this.http.get(this.baseURL + endpoint, reqOpts);
   }
 
-  post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
+  post(endpoint: string, body?: any, reqOpts?: any) {
+    this.init();
+    return this.http.post(this.baseURL + endpoint, body, reqOpts);
   }
 
-  put(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
+  put(endpoint: string, body?: any, reqOpts?: any) {
+    this.init();
+    return this.http.put(this.baseURL + endpoint, body, reqOpts);
   }
 
   delete(endpoint: string, reqOpts?: any) {
-    return this.http.delete(PublicVar.GetBaseURL() + '/api/' + endpoint);
+    this.init();
+    return this.http.delete(this.baseURL + endpoint);
   }
 
-  patch(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.put(PublicVar.GetBaseURL() + '/api/' + endpoint, body, reqOpts);
+  patch(endpoint: string, body?: any, reqOpts?: any) {
+    this.init();
+    return this.http.put(this.baseURL + endpoint, body, reqOpts);
   }
 }

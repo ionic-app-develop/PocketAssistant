@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-content class="cardHeader">
+    <h2>
+      {{currentServicesGroup.serviceGroupName}}
+    </h2>
+  </ion-card-content>
+  <ion-row>
+    <ion-col class="col"
+             *ngFor="let service of currentServicesGroup.services">
+      <div (click)="onClickService()">
+        <img class="img" [src]="service.imagePath"/>
+        <br>
+        <p>{{service.name}}</p>
+        <br>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-card>
+

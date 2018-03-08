@@ -1,0 +1,29 @@
+services-group-builder {
+  .cardHeader {
+    background-color: #fff;
+    border: 1px;
+    height: 35px;
+    border-bottom-color: #e0e0e0 !important;
+    border-bottom-style: solid !important;
+  }
+  .card-content {
+    padding: 7px 7px;
+    line-height: 1.5;
+  }
+
+  .col {
+    min-width: 33.3%;
+    max-width: 33.3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+  }
+
+  .img {
+    height: 60px;
+    width: 60px;
+    margin-top: 10px;
+  }
+}

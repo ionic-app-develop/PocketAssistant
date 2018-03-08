@@ -31,7 +31,7 @@ export class AnnouncementEntranceComponent  implements AfterViewInit {
   private generateHtmlFromAnnouncements() {
   this.announcements = [];
    console.log('getAnnouncements AnnouncementListPage');
-    this.announcementService.query().subscribe((res) => {
+    this.announcementService.queryTop5Announcement().subscribe((res) => {
       console.log("announcements :"+ res);
       let announcements: any = [];
       announcements = res;

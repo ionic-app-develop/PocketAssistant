@@ -6,10 +6,11 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Storage} from '@ionic/storage';
 import {AppTranslationService} from './app.translation.service';
+import {SettingProvider} from './../providers/providers';
 
 @Component({
   template: `
-    <ion-nav #content [root]="rootPage"></ion-nav>`
+    <ion-nav #content [root]="rootPage" [class]="selectedTheme"></ion-nav>`
 })
 export class MyApp {
 
@@ -18,6 +19,7 @@ export class MyApp {
   onceAgainExit: string;
 
   @ViewChild(Nav) nav: Nav;
+  selectedTheme: String;
 
   constructor(public ionicApp: IonicApp,
               public translate: TranslateService,
@@ -26,9 +28,11 @@ export class MyApp {
               public config: Config,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
+              private settings: SettingProvider,
               public toastService: ToastService,
               public storage: Storage
               ) {
+    this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
   }
 
   ionViewWillEnter() {

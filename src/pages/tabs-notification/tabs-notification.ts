@@ -1,12 +1,13 @@
 import {TranslateService} from '@ngx-translate/core';
 import {Storage} from '@ionic/storage';
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {NavController, AlertController, IonicPage} from 'ionic-angular';
+import {NavController, IonicPage} from 'ionic-angular';
 import {AppTranslationService} from "../../app/app.translation.service";
-import {Item, Notification} from '../../models/index';
-import {Authentication, Items, ItemService, NotificationService} from '../../providers/providers';
+import {Notification} from '../../models/index';
+import {Authentication, NotificationService} from '../../providers/providers';
 import {Utils} from "../../common/utils";
 import {PublicVar} from "../../common/constant";
+import {ThemeableBrowser, ThemeableBrowserOptions} from "@ionic-native/themeable-browser";
 
 @IonicPage({name: 'notification'})
 @Component({
@@ -22,16 +23,34 @@ export class TabsNotification {
   langKeys = [];
   langMap: Map<string, any> = new Map<string, any>();
 
+  options: ThemeableBrowserOptions = {
+    toolbar: {
+      height: 44,
+      color: '#387EF5'
+    },
+    title: {
+      color: '#000000',
+      showPageTitle: true
+    },
+    closeButton: {
+      image: 'back',
+      imagePressed: 'back_pressed',
+      align: 'left',
+      event: 'backPressed'
+    }
+  };
+
   constructor(private navCtrl: NavController,
               private storage: Storage,
               private authentication: Authentication,
               private translateService: TranslateService,
-              private alertCtrl: AlertController,
+              // private alertCtrl: AlertController,
               private appTranslationService: AppTranslationService,
               // private itemService: ItemService,
               private notificationService: NotificationService,
               private cd: ChangeDetectorRef,
-              private items: Items) {
+              // private items: Items,
+              private themeableBrowser: ThemeableBrowser) {
   }
 
   ionViewWillEnter() {
@@ -78,8 +97,16 @@ export class TabsNotification {
   }
 
   openItem(item: Notification) {
-    this.navCtrl.push('notification-detail', {
-      item: item
+    // this.navCtrl.push('notification-detail', {
+    //   item: item
+    // });
+    // let browser: ThemeableBrowserObject = this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
+    this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
+  }
+
+  addItem(item: Notification) {
+    this.notificationService.add(item).subscribe((res) => {
+      this.getNotifications();
     });
   }
 

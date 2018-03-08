@@ -23,6 +23,8 @@ import {AppTranslationService} from './app.translation.service';
 import {TabsPage} from './../pages/tabs/tabs';
 import {SettingPage} from './../pages/setting/setting';
 import {IonJPushModule} from 'ionic2-jpush'
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
+import {SettingProvider} from './../providers/providers';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import {IonJPushModule} from 'ionic2-jpush'
     CameraProvider,
     ToastService,
     AppTranslationService,
+    ThemeableBrowser,
+    SettingProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

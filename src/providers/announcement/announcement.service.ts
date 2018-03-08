@@ -18,8 +18,8 @@ export class AnnouncementService {
     return seq;
   }
 
-  queryTop10NewestAnnouncement(params?: any) {
-    let seq = this.api.get('announcements', params).share();
+  queryTop5Announcement(params?: any) {
+    let seq = this.api.get('top5Announcements', params).share();
     return seq;
   }
 
