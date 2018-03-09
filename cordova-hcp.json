@@ -4,6 +4,6 @@
   "min_native_interface": 1,
   "ios_identifier": "",
   "android_identifier": "",
-  "content_url": "http://hotpush.applinzi.com",
+  "content_url": "http://116.6.64.111:15001/mobile/hotpush/www",
   "update": "now"
 }

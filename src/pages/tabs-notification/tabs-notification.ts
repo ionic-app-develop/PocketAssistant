@@ -15,7 +15,6 @@ import {ThemeableBrowser, ThemeableBrowserOptions} from "@ionic-native/themeable
   templateUrl: 'tabs-notification.html'
 })
 export class TabsNotification {
-  // currentItems: Item[];
   private timer;
   currentItems: any = [];
   notifications: any = [];
@@ -70,7 +69,6 @@ export class TabsNotification {
 
   initTranslateMessage() {
     let curLan = this.translateService.getBrowserLang();
-    console.log('NotificationPage curLan: ' + curLan);
     // this.translateService.get(this.langKeys)
     //   .subscribe(res => {
     //
@@ -127,7 +125,7 @@ export class TabsNotification {
       this.notificationService.query({loginUserId: username}).subscribe((res) => {
         let notifications: any = [];
         notifications = res;
-        if(notifications.length>0){
+        if(notifications && notifications.length>0){
           this.currentItems = Utils.order(notifications,'createTime','desc');
         }
         PublicVar.setHasNewNotification(false);
@@ -138,7 +136,10 @@ export class TabsNotification {
       this.notificationService.queryUnReadNotificationNum({readed: false, loginUserId: username}).subscribe((res) => {
         let unReadNotifications: any =  [];
         unReadNotifications = res;
-        let unReadNotificationNum = unReadNotifications.length;
+        let unReadNotificationNum = '';
+        if(res) {
+          unReadNotificationNum = unReadNotifications.length;
+        }
         PublicVar.setNotificationNum(unReadNotificationNum);
       }, (err) => {
         console.log('notification query error');

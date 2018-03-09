@@ -15,7 +15,7 @@
       <button ion-item (click)="openItem(item)">
         <ion-avatar item-start class="avatar">
           <img [src]="item.icon"/>
-          <div *ngIf="!item.readed" class="avatar-badge"></div>
+          <div *ngIf="!item.notificationReadStatuses[0].readed" class="avatar-badge"></div>
         </ion-avatar>
         <h2>{{item.title}}</h2>
         <p>{{item.content}}</p>

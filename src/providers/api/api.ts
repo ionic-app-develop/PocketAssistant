@@ -51,9 +51,8 @@ export class Api {
         reqOpts.params = reqOpts.params.set(k, params[k]);
       }
     }
-    console.log("this.baseURL: " + this.baseURL);
-    console.log("this.endpoint: " + endpoint);
-    console.log("this.reqOpts: " + reqOpts);
+    console.log("this.URL: " + this.baseURL + endpoint);
+    // console.log("this.reqOpts: " + JSON.stringify(reqOpts));
 
     return this.http.get(this.baseURL + endpoint, reqOpts);
   }
