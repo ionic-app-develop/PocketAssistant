@@ -23,10 +23,8 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <chcp>
-        <auto-download enabled="true" />
-        <auto-install enabled="true" />
-        <native-interface version="1" />
-        <config-file url="http://116.6.64.111:15001/mobile/hotpush/www/chcp.json" />
+        <local-development enabled="true" />
+        <config-file url="http://hotpush.applinzi.com/chcp.json" />
     </chcp>
     <platform name="android">
         <allow-intent href="market:*" />

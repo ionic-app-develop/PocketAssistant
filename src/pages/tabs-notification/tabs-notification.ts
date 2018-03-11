@@ -95,11 +95,11 @@ export class TabsNotification {
   }
 
   openItem(item: Notification) {
-    // this.navCtrl.push('notification-detail', {
-    //   item: item
-    // });
+    this.navCtrl.push('notification-detail', {
+      item: item
+    });
     // let browser: ThemeableBrowserObject = this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
-    this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
+    // this.themeableBrowser.create('https://www.baidu.com', '_self', this.options);
   }
 
   addItem(item: Notification) {
@@ -129,14 +129,13 @@ export class TabsNotification {
           this.currentItems = Utils.order(notifications,'createTime','desc');
         }
         PublicVar.setHasNewNotification(false);
-        // PublicVar.setNotificationNum(this.currentItems.length);
       }, (err) => {
         console.log('notification query error');
       });
       this.notificationService.queryUnReadNotificationNum({readed: false, loginUserId: username}).subscribe((res) => {
         let unReadNotifications: any =  [];
-        unReadNotifications = res;
         let unReadNotificationNum = '';
+        unReadNotifications = res;
         if(res) {
           unReadNotificationNum = unReadNotifications.length;
         }
